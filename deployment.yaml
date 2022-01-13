@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jlee
+    tyroTeam: jlee
+  name: jlee
+  namespace: jlee
+spec:
+  selector:
+    matchLabels:
+      app: jlee
+  template:
+    metadata:
+      labels:
+        app: jlee
+        tyroTeam: jlee
+    spec:
+      containers:
+        - args:
+          - "-listen=:8080"
+          - "-text=i have the power"
+          name: jlee
+          image: hashicorp/http-echo:0.2.3
+          ports:
+            - containerPort: 8080
+          securityContext:
+            runAsUser: 1234
